@@ -1,31 +1,32 @@
 #include <LiquidCrystal.h>
-#define red 10
-#define green 8
-#define blue 9
 LiquidCrystal lcd(12, 11, 5, 4, 3, 2);
 void setup()
-{
-  lcd.begin(16,2);
-  lcd.setCursor(0,0);
-  pinMode(red, OUTPUT);
-  pinMode(green, OUTPUT);
-  pinMode(blue, OUTPUT);
-}
-void loop()
-{
-  lighton("RED",red);
-  lighton("GREEN",green);
-  lighton("BLUE",blue);
-}
-void lighton(char light[],int pin)
-{
-  lcd.print(light);
-  analogWrite(red,0);
-  analogWrite(green,0);
-  analogWrite(blue,0);
-  analogWrite(pin,255);
-  delay(2000);
-  lcd.clear();
-  lcd.setCursor(0,0);
+{ 
+  lcd.begin(16, 2);
+  pinMode(8, OUTPUT);
+  pinMode(9, OUTPUT);
+  pinMode(10, OUTPUT);
+  lcd.print("RGB color Print");
 }
 
+void loop()
+{ delay(1000);
+  digitalWrite(10,HIGH);
+  digitalWrite(9,LOW);
+  digitalWrite(8,LOW);
+  lcd.print("RED");
+  delay(1000);
+   lcd.clear();
+   digitalWrite(9,HIGH);
+  digitalWrite(10,LOW);
+  digitalWrite(8,LOW);
+  lcd.print("BLUE");
+  delay(1000);
+  lcd.clear();
+   digitalWrite(8,HIGH);
+  digitalWrite(10,LOW);
+  digitalWrite(9,LOW);
+  lcd.print("GREEN");
+  delay(1000);
+  lcd.clear();
+}
